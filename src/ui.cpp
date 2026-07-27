@@ -341,7 +341,7 @@ void UI::Draw()
             ImGui::PopID();
         }
 
-        if (ImGui::IsKeyPressed(ImGuiKey{settings.toggle_key}, false))
+        if (hotkey_enabled && ImGui::IsKeyPressed(ImGuiKey{settings.toggle_key}, false))
             Toggle();
 
         auto& io           = ImGui::GetIO();

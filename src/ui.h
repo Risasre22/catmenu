@@ -99,6 +99,7 @@ public:
 
 private:
     bool        show_menu = false;
+    bool        hotkey_enabled = true;
     inline void Toggle(std::optional<bool> enabled = std::nullopt)
     {
         auto& io = ImGui::GetIO();
@@ -138,6 +139,10 @@ public:
     }
 
     inline bool IsMenuOpen() { return show_menu; }
+    inline void OpenMenu() { Toggle(true); }
+    inline void CloseMenu() { Toggle(false); }
+    inline void SetHotkeyEnabled(bool enabled) { hotkey_enabled = enabled; }
+    inline bool IsHotkeyEnabled() const { return hotkey_enabled; }
 
     APIResult RegisterOverlayDrawFunc(std::string_view name, std::function<bool()> func);
     APIResult RegisterMenuDrawFunc(std::string_view name, std::function<bool()> func);

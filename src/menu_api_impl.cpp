@@ -36,4 +36,21 @@ extern "C" __declspec(dllexport) APIBase* GetAPI()
     return API::GetSingleton();
 }
 
+// Stable integration exports. These intentionally live outside APIBase so adding
+// them does not change its vtable or break existing CatMenu API consumers.
+extern "C" __declspec(dllexport) void CatMenu_OpenMenu()
+{
+    UI::GetSingleton()->OpenMenu();
+}
+
+extern "C" __declspec(dllexport) void CatMenu_CloseMenu()
+{
+    UI::GetSingleton()->CloseMenu();
+}
+
+extern "C" __declspec(dllexport) void CatMenu_SetHotkeyEnabled(bool a_enabled)
+{
+    UI::GetSingleton()->SetHotkeyEnabled(a_enabled);
+}
+
 } // namespace CatMenu
